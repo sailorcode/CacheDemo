@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.trendytech.tcmp.queryengine.core.identity.project.ProjectMapper">
+
+	<resultMap type="com.trendytech.tcmp.queryengine.core.identity.project.Project" id="Project">
+		<result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="region" property="region"/>
+	</resultMap>
+    
+    <select id="queryProjects" resultMap="Project">
+        select b.openstack_project_id id, a.name, c.region_id region FROM tcmp.project a inner join project_tcmp_openstack b on a.uuid = b.project_id inner join region_project c on a.uuid = c.project_id
+    	<where>
+    		<if test="region != null">
+    			and c.region_id = #{region}
+    		</if>
+    	</where>
+    </select>
+
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.trendytech.tcmp.queryengine.core.platform.vsphere.VCServerMapper">
+
+	<resultMap type="com.trendytech.tcmp.queryengine.core.platform.vsphere.VCServer" id="VCServer">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="region_id" property="regionId" />
+		<result column="ip" property="ip" />
+		<result column="port" property="port" />
+		<result column="proxy_ip" property="proxyIp" />
+		<result column="proxy_port" property="proxyPort" />
+		<result column="contacts" property="contacts" />
+		<result column="contacts_phone" property="contactsPhone" />
+		<result column="contacts_email" property="contactsEmail" />
+		<result column="note" property="note" />
+	</resultMap>
+
+	<select id="findVCServer" resultMap="VCServer">
+		select * from platform_vc_server where id = #{id}
+	</select>
+
+	<select id="listVCServers" resultMap="VCServer">
+		select * from platform_vc_server
+	</select>
+
+</mapper>
